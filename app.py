@@ -1,9 +1,11 @@
 import json
-from flask import Flask
+from flask import Flask, render_template
 import psycopg2
 import os
+from forms import SelectionForm
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "mysecret"
 
 if 'POSTGRES_PASSWORD_FILE' in os.environ:
    with open(os.environ['POSTGRES_PASSWORD_FILE'], 'r') as f:
@@ -11,9 +13,10 @@ if 'POSTGRES_PASSWORD_FILE' in os.environ:
 else:
    password = os.environ['POSTGRES_PASSWORD']
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def hello_world():
-    return 'Hello, Docker!'
+    selection_form = SelectionForm(csrf_enabled=False)
+    return render_template('index.html', index_form=selection_form)
 
 
 @app.route('/widgets')
