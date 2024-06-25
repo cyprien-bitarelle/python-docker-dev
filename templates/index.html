@@ -3,20 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../assets/style.css" rel="stylesheet" />
     <title>Démarrage des postes</title>
   </head>
   <body>
     <h1>Démarrage des ordinateurs à distance</h1>
 
-    <form action="" method="post">
+    <form action="/" method="post">
       {{ index_form.hidden_tag() }}
-      {{ index_form.pc_tam.label }}
-      {{ index_form.pc_tam() }}
-      {{ index_form.pc_cypri.label }}
-      {{ index_form.pc_cypri() }}
-      {{ index_form.nas.label }}
-      {{ index_form.nas() }}
-      {{ index_form.submit() }}
+      <div class="form-container">
+        <div>{{ index_form.pc_tam.label }} {{ index_form.pc_tam() }}</div>
+        <div>{{ index_form.pc_cypri.label }} {{ index_form.pc_cypri() }}</div>
+        <div>{{ index_form.nas.label }} {{ index_form.nas() }}</div>
+      </div>
+      {{ index_form.submit(class_="form-submit") }}
     </form>
   </body>
 </html>
